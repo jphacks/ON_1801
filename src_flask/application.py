@@ -1,15 +1,40 @@
 from venv import logger
-
-from flask import Flask, request, jsonify
+import  sqlite3
+from flask import Flask, request, jsonify, g
 import cek
 import os
+import peewee as pe
+
+db = pe.SqliteDatabase('my_database.db')
+
+class BaseModel(pe.Model):
+    class Meta:
+        database = db
+
+# データテーブルのモデル
+class User(BaseModel):
+    id = pe.IntegerField()
+
+class ZaimAccesstoken(BaseModel):
+    user = pe.ForeignKeyField(User, related_name='zaimaccesstokens')
+    access = pe.CharField()
+
+
+class Zaim(BaseModel):
+    id = pe.IntegerField()
+    user = pe.ForeignKeyField(User, related_name='zaims')
+    money = pe.IntegerField()
+
+
+
+
 
 application = Flask(__name__)
-
 clova = cek.Clova(
     application_id=os.environ['CLOVA_ID'],
     default_language="ja",
     debug_mode=True)
+
 
 # /clova に対してのPOSTリクエストを受け付けるサーバーを立てる
 @application.route('/clova', methods=['POST'])
@@ -22,7 +47,7 @@ def my_service():
 # 起動時の処理
 @clova.handle.launch
 def launch_request_handler(clova_request):
-    welcome_japanese = cek.Message(message="調子どうだい？", language="ja")
+    welcome_japanese = cek.Message(message="はい何でしょう", language="ja")
     response = clova.response([welcome_japanese])
     return response
 
@@ -36,7 +61,6 @@ def wife_status_handler(clova_request):
     #         response = clova.response('差額は500円です')
     #
     # return response
-    print("hoge")
     slot = clova_request.slot_value("money_chan")
     message_japanese = cek.Message(message="もう一回言って下さい", language="ja")
 
@@ -57,6 +81,10 @@ def end_handler(clova_request):
 @clova.handle.default
 def default_handler(request):
     return clova.response("Sorry I don't understand! Could you please repeat?")
+
+
+
+
 
 if __name__ == '__main__':
     application.run()
