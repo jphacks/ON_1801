@@ -1,0 +1,6 @@
+# Get access token
+curl -d client_id=[Client ID] -d client_secret=[secret ID] -d redirect_uri=https://example.com -d grant_type=authorization_code -d code=971a419daeeec5ca1eef77d1aa3146adfeedcd23d5542468a8ccc91d28d6a347 -X POST https://invoice.moneyforward.com/oauth/token
+
+# Get Json data
+curl -i -H "Authorization: BEARER [access token]" https://invoice.moneyforward.com/api/v1/office.json
+
