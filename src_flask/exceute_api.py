@@ -2,11 +2,12 @@ from venv import logger
 
 from flask import Flask, request, jsonify
 import cek
+import os
 
 app = Flask(__name__)
 
 clova = cek.Clova(
-    application_id="MY EXTENSION ID",
+    application_id=os.environ['CLOVA_ID']
     default_language="ja",
     debug_mode=True)
 
@@ -26,11 +27,15 @@ def launch_request_handler(clova_request):
     return response
 
 # WifeStatusIntentの発火箇所
-@clova.handle.intent("WifeStatusIntent")
+@clova.handle.intent("money_chan")
 def wife_status_handler(clova_request):
-    print("ワイフインテント")
-    message_japanese = cek.Message(message="奥さんの気分はいい感じです", language="ja")
-    response = clova.response([message_japanese])
+    #message_japanese = cek.Message(message="奥さんの気分はいい感じです", language="ja")
+    money_msg = clova_request.slot_value('money_chan')
+    response
+    if money_msg is not None:
+        if money_msg == "差額"
+            response = clova.response('差額は500円です)
+             
     return response
 
 # 終了時
