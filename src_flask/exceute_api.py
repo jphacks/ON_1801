@@ -34,7 +34,7 @@ def wife_status_handler(clova_request):
     response
     if money_msg is not None:
         if money_msg == "差額"
-            response = clova.response('差額は500円です)
+            response = clova.response('差額は500円です')
              
     return response
 
@@ -48,3 +48,6 @@ def end_handler(clova_request):
 @clova.handle.default
 def default_handler(request):
     return clova.response("Sorry I don't understand! Could you please repeat?")
+
+if __name__ == '__main__':
+    app.run()
