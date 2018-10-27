@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 clova = cek.Clova(
-    application_id=os.environ['CLOVA_ID']
+    application_id=os.environ['CLOVA_ID'],
     default_language="ja",
     debug_mode=True)
 
@@ -31,9 +31,8 @@ def launch_request_handler(clova_request):
 def wife_status_handler(clova_request):
     #message_japanese = cek.Message(message="奥さんの気分はいい感じです", language="ja")
     money_msg = clova_request.slot_value('money_chan')
-    response
     if money_msg is not None:
-        if money_msg == "差額"
+        if money_msg == "差額":
             response = clova.response('差額は500円です')
              
     return response
