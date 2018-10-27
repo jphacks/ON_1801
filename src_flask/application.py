@@ -1,6 +1,7 @@
-from venv import logger
 import  sqlite3
 from flask import Flask, request, jsonify, g
+import logging
+
 import cek
 import os
 import peewee as pe
@@ -27,14 +28,21 @@ class Zaim(BaseModel):
 
 
 
-
-
 application = Flask(__name__)
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 clova = cek.Clova(
     application_id=os.environ['CLOVA_ID'],
     default_language="ja",
     debug_mode=True)
 
+
+@application.route('/', methods=['GET', 'POST'])
+def lambda_handler(event=None, context=None):
+    logger.info('Lambda function invoked index()')
+    return 'hello from Flask!'
 
 # /clova に対してのPOSTリクエストを受け付けるサーバーを立てる
 @application.route('/clova', methods=['POST'])
