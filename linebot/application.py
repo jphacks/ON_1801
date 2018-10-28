@@ -74,6 +74,8 @@ def text_message_handler(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage('先月との差額は'+str(VALUE)+'円だよ'))
     elif re.match('.*今日.*いくら.*',event.message.text):
         line_bot_api.reply_message(event.reply_token, TextSendMessage('5000円使ったよ'))
+    elif re.match('gitub',event.message.text,re.IGNORECASE):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage('https://github.com/jphacks/ON_1801'))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage('ちゃんと話して！'))
 
