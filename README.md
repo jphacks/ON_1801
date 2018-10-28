@@ -1,6 +1,6 @@
 # おかねかんりちゃん
 
-[![Product Name](thumbnail.png)](https://youtu.be/q_wMnh84Fn8)
+[![Product Name](thumbnail.png)](https://youtu.be/3rcEfKAH2dU)
 
 ## 製品概要
 ### Money x Tech
