@@ -65,7 +65,7 @@ def callback():
 
 def text_message_handler(event):
 
-    VALUE = (today_sum() - yesterday_sum())
+    VALUE = (yesterday_sum() - today_sum())
 
 
     if re.match('.*残高.*',event.message.text):
