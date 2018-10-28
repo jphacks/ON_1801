@@ -1,11 +1,36 @@
+import  sqlite3
+from flask import Flask, request, jsonify, g
 import logging
-import json
-from flask import Flask, request, jsonify
 import cek
 import os
+import peewee as pe
+import zaim
+import datetime
+
+db = pe.SqliteDatabase('my_database.db')
+
+
+class BaseModel(pe.Model):
+    class Meta:
+        database = db
+
+# データテーブルのモデル
+class User(BaseModel):
+    id = pe.IntegerField()
+
+class ZaimAccesstoken(BaseModel):
+    user = pe.ForeignKeyField(User, related_name='zaimaccesstokens')
+    access = pe.CharField()
+
+
+class Zaim(BaseModel):
+    id = pe.IntegerField()
+    user = pe.ForeignKeyField(User, related_name='zaims')
+    money = pe.IntegerField()
+
+
 
 application = Flask(__name__)
-
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -14,6 +39,7 @@ clova = cek.Clova(
     application_id=os.environ['CLOVA_ID'],
     default_language="ja",
     debug_mode=True)
+
 
 @application.route('/', methods=['GET', 'POST'])
 def lambda_handler(event=None, context=None):
@@ -53,9 +79,6 @@ def wife_status_handler(clova_request):
     return response
 
 
-
-
-
 # 終了時
 @clova.handle.end
 def end_handler(clova_request):
@@ -66,6 +89,34 @@ def end_handler(clova_request):
 @clova.handle.default
 def default_handler(request):
     return clova.response("Sorry I don't understand! Could you please repeat?")
+
+# zaimに問い合わせ
+
+def request_zaim_setup():
+    zapi = zaim.Api(consumer_key=os.environ['ZAIM_KEY'],
+                consumer_secret=os.environ['ZAIM_SECRET'],
+                access_token=os.environ['ACCESS_TOKEN_ZAIM'],
+                access_token_secret=os.environ['ACCESS_TOKEN_ZAIM_SECRET'])
+    return zapi
+
+def request_zaim_money(zapi):
+    d_today = datetime.date.today()
+    today_moneys_json = zapi.money(mapping=1,
+              start_date=d_today.strftime('%Y-%m-%d'),
+              mode='payment',
+              end_date=d_today.strftime('%Y-%m-%d')
+    )
+    return today_moneys_json
+ 
+def today_sum():
+    moneys = request_zaim_money(request_zaim_setup())
+    summoney = 0
+    for money in moneys['money']:
+        summoney += money['amount']
+    return summoney
+
+                      
+
 
 if __name__ == '__main__':
     application.run()
