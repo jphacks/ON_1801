@@ -68,15 +68,15 @@ def wife_status_handler(clova_request):
     print(VALUE)
 
     money_msg = clova_request.slot_value('money_chan')
-    response = clova.response("もう一回行ってください")
+    response = clova.response("もう一回言ってね")
     print(money_msg)
     if money_msg is not None:
         if money_msg == "差額":
-            response = clova.response("差額は"+str(VALUE)+"円です。")
+            response = clova.response("先月との差額は"+str(VALUE)+"円だよ")
             if VALUE < 0:
-                response = clova.response("差額は"+str(VALUE)+"円です。使いすぎです。")
+                response = clova.response("先月との差額は"+str(VALUE)+"円だよ！使いすぎです。")
         elif money_msg == "残高":
-            response = clova.response("残っていません。")
+            response = clova.response("残っていないよ")
     return response
 
 
@@ -115,7 +115,7 @@ def request_zaim_money_day(zapi,calc_days=0):
     return day_moneys_json
 
 
- 
+
 def today_sum():
     return calc_money_sum(request_zaim_money_day(request_zaim_setup()))
 
