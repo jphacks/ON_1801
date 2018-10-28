@@ -4,8 +4,11 @@ import logging
 import cek
 import os
 import peewee as pe
+import zaim
+import datetime
 
 db = pe.SqliteDatabase('my_database.db')
+
 
 class BaseModel(pe.Model):
     class Meta:
@@ -84,8 +87,32 @@ def end_handler(clova_request):
 def default_handler(request):
     return clova.response("Sorry I don't understand! Could you please repeat?")
 
+# zaimに問い合わせ
 
+def request_zaim_setup():
+    zapi = zaim.Api(consumer_key=os.environ['ZAIM_KEY'],
+                consumer_secret=os.environ['ZAIM_SECRET'],
+                access_token=os.environ['ACCESS_TOKEN_ZAIM'],
+                access_token_secret=os.environ['ACCESS_TOKEN_ZAIM_SECRET'])
+    return zapi
 
+def request_zaim_money(zapi):
+    d_today = datetime.date.today()
+    today_moneys_json = zapi.money(mapping=1,
+              start_date=d_today.strftime('%Y-%m-%d'),
+              mode='payment',
+              end_date=d_today.strftime('%Y-%m-%d')
+    )
+    return today_moneys_json
+ 
+def today_sum():
+    moneys = request_zaim_money(request_zaim_setup())
+    summoney = 0
+    for money in moneys['money']:
+        summoney += money['amount']
+    return summoney
+
+                      
 
 
 if __name__ == '__main__':
