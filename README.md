@@ -38,6 +38,10 @@ ClovaとZaimを連携させ、Zaimから取得した金額を元に Clova（お�
 #### フレームワーク・ライブラリ・モジュール
 * [flask](http://flask.pocoo.org)
 * [Amazon AWS](https://aws.amazon.com/jp/)
+    * [zappa](https://www.zappa.io/)
+* [clova-cek-sdk-python](https://github.com/line/clova-cek-sdk-python)
+* [line-bot-sdk-python](https://github.com/line/line-bot-sdk-python)
+* [zaim](https://github.com/hiromu2000/zaim)
 
 #### デバイス
 * [Macbook Pro](https://www.apple.com/jp/macbook-pro/?afid=p238%7CsxLoA1Hns-dc_mtid_18707vxu38484_pcrid_284003974216_&cid=aos-jp-kwgo-mac--slid-)
