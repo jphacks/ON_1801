@@ -26,22 +26,22 @@ ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おか�
 お金の使いすぎによる破産の回避。
 記録が苦手な方でも楽しくお金の管理に取り組むことが出来る。 アプリの長期間の利用に繋がりやすい。
 ### 今後の展望
-顔認証やセンサーによってClova自身が話しかけてくる。
+顔認証やセンサーによってClova自身が話しかけてくる。  
 金銭的な余裕があるとamazon欲しいものリストから購入可能な商品をオススメする用にする。
 ## 開発内容・開発技術
 ### 活用した技術
 #### API・データ
 
-* Clova Extensions Kit API
-* Zaim API
+* [Clova Extensions Kit API](https://clova-developers.line.me/#/)
+* [Zaim API](https://zaim.net)
 
 #### フレームワーク・ライブラリ・モジュール
 * flask
-* Amazon AWS
+* [Amazon AWS](https://aws.amazon.com/jp/)
 
 #### デバイス
 * Macbook Pro
-* Clova Friends [BROWN]
+* [Clova Friends [BROWN]](https://clova.line.me/clova-friends-mini/?gclid=CjwKCAjwmdDeBRA8EiwAXlarFvDKC0_sRzvsM8ZIc8xJyy67oq0ecu4AKxQgiZHg8z2C2sY4_jcMDRoCyFYQAvD_BwE)
 
 ### 独自開発技術（Hack Dayで開発したもの）
 #### 2日間に開発した独自の機能・技術
