@@ -7,8 +7,8 @@ use OAuth::Lite::Consumer;
 use OAuth::Lite::Token;
 
 
-my $consumer_key    = '5a16dc78b738134b766719315527fd7b639ac87f';
-my $consumer_secret = '9b53494758fb485c09e0587d4694c49ac1ad6e7f';
+my $consumer_key    = $ENV{ZAIM_KEY};
+my $consumer_secret = $ENV{ZAIM_SECRET};
 
 my $consumer = OAuth::Lite::Consumer->new(
     consumer_key          => $consumer_key,
@@ -16,7 +16,6 @@ my $consumer = OAuth::Lite::Consumer->new(
     site                  => q{https://api.zaim.net},
     request_token_path    => q{https://api.zaim.net/v2/auth/request},
     access_token_path     => q{https://api.zaim.net/v2/auth/access},
-#     authorize_path        => q{https://www.zaim.net/users/auth},
     authorize_path        => q{https://auth.zaim.net/users/auth},
     );
 
