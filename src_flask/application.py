@@ -127,8 +127,6 @@ def calc_money_sum(moneys):
 
 def yesterday_sum():
     return calc_money_sum(request_zaim_money_day(request_zaim_setup(),-1))
-                      
-
 
 if __name__ == '__main__':
     application.run()
