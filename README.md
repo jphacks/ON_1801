@@ -69,6 +69,10 @@ export ACCESS_TOKEN_ZAIM_SECRET="access_token_zaim_secret"
 * Add a new application で Service tipe を Client Appで、Access Level に全てチェックを付けて作成。
 * Consumer Key と Consumer Secret がもらえるので環境変数に設定。
 * perl src_flask/zaim_access.pl で表示されるURLにブラウザからアクセスしてHTMLに隠れているVerifier を標準入力すると Access Token と Access Token Secret が得られるので、こちらも環境変数に設定。
+##### ngrokを使用する際
+* FLASK_APP=application.py flask runでclovaが動きます。
+* FLASK runで動かす。
+* (lineのdeveloperでurlを設定しないといけない)
 
 ##### 必要なモジュール
 * perl
