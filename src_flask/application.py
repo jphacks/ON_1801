@@ -74,7 +74,7 @@ def wife_status_handler(clova_request):
         if money_msg == "差額":
             response = clova.response("差額は"+str(VALUE)+"円です。")
             if VALUE < 0:
-                response = clova.response("使いすぎです。")
+                response = clova.response("差額は"+str(VALUE)+"円です。使いすぎです。")
         elif money_msg == "残高":
             response = clova.response("残っていません。")
     return response
