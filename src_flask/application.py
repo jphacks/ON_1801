@@ -57,7 +57,7 @@ def my_service():
 # 起動時の処理
 @clova.handle.launch
 def launch_request_handler(clova_request):
-    welcome_japanese = cek.Message(message="はい何でしょう", language="ja")
+    welcome_japanese = cek.Message(message="金なら残っていないぞ", language="ja")
     response = clova.response([welcome_japanese])
     return response
 
@@ -68,11 +68,14 @@ def wife_status_handler(clova_request):
 
     money_msg = clova_request.slot_value('money_chan')
     response = clova.response("もう一回行ってください")
+    print(money_msg)
     if money_msg is not None:
         if money_msg == "差額":
             response = clova.response("差額は"+str(VALUE)+"です。")
             if VALUE > 10000:
                 response = clova.response("使いすぎです。")
+        elif money_msg == "残高":
+            response = clova.response("残っていません。")
     return response
 
 
