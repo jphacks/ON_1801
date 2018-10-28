@@ -16,11 +16,12 @@ my $consumer = OAuth::Lite::Consumer->new(
     site                  => q{https://api.zaim.net},
     request_token_path    => q{https://api.zaim.net/v2/auth/request},
     access_token_path     => q{https://api.zaim.net/v2/auth/access},
-    authorize_path        => q{https://www.zaim.net/users/auth},
+#     authorize_path        => q{https://www.zaim.net/users/auth},
+    authorize_path        => q{https://auth.zaim.net/users/auth},
     );
 
 my $request_token = $consumer->get_request_token(
-    callback_url => 'http://google.com/' #適当なURLを入れておく
+    callback_url => 'https://api.zaim.net' #適当なURLを入れておく
     ) or die $consumer->errstr."\n";;
 
      
