@@ -46,3 +46,16 @@ ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おか�
 ### 独自開発技術（Hack Dayで開発したもの）
 #### 2日間に開発した独自の機能・技術
 * ClovaとZaimの連携
+####使用上の注意
+*direnvを使用して環境変数のパラメータを設定しているので、環境変数の設定を忘れずに。
+
+
+```
+export CLOVA_ID="clova_id"
+export ZAIM_KEY="zaim_key"
+export ZAIM_SECRET="zaim_secret"
+export ACCESS_TOKEN_ZAIM="access_token_zaim"
+export ACCESS_TOKEN_ZAIM_SECRET="access_token_zaim_secret"
+```
+
+####起動・使用方法
