@@ -14,12 +14,10 @@ access_token_url = 'https://api.zaim.net/v2/auth/access'
 authenticate_url = 'https://auth.zaim.net/users/auth'
 callback_uri = 'https://www.zaim.net/'
 callback_url = 'https://www.zaim.net/'
-consumer_key_file = open("consumer_key.txt", "r").read()
-consumer_key = consumer_key_file.replace('\n','')
-consumer_secret_file = open("consumer_secret.txt", "r").read()
-consumer_secret = consumer_secret_file.replace('\n','')
- 
+consumer_key = open("consumer_key.txt", "r").read().replace('\n','')
+consumer_secret = open("consumer_secret.txt", "r").read().replace('\n','')
 
+get_acount_url = 'https://api.zaim.net/v2/account'
 
 def get_request_token():
     consumer = oauth.Consumer(key=consumer_key, secret=consumer_secret)
@@ -50,15 +48,34 @@ def get_access_token(oauth_token, oauth_verifier):
     client = oauth.Client(consumer, token)
     resp, content = client.request(access_token_url, "POST", body="oauth_verifier={0}".format(oauth_verifier))
     return content
- 
+
+# def get_acount():
+#     consumer = oauth.Consumer(key=consumer_key, secret=consumer_secret)
+#     client = oauth.Client(consumer)
+#  
+#     # get the request_token
+#     resp, content = client.request(get_acount_url, "GET")
+#     # resp, content = client.request('%s?&oauth_callback=%s' % (get_acount_url, callback_url))
+#     acount = dict(parse_qsl(content))
+#     if 'a' in acount:
+#         print ('get_acount: %s' % acount['a'])
+#     else:
+#         print ('not get acount')
+#         return
+#     return acount 
+
+
 # main
 ## request tokenを取得
 request_token = get_request_token()
+
+# ## acount を取得
+# acount = get_acount()
+# print ('acount: %s' % acount)
  
 ## request_tokenを認証URLにつけて認証URLを生成する
 authorize_url = '%s?oauth_token=%s' % (authenticate_url, request_token)
 print ('Authorize url: %s' % authorize_url)
-
 
 
 # def oauth_requests():
