@@ -5,8 +5,10 @@ import logging
 import cek
 import os
 import peewee as pe
+import zaim
 
 db = pe.SqliteDatabase('my_database.db')
+
 
 class BaseModel(pe.Model):
     class Meta:
@@ -90,8 +92,13 @@ def end_handler(clova_request):
 def default_handler(request):
     return clova.response("Sorry I don't understand! Could you please repeat?")
 
+# zaimに問い合わせ
 
-
+def request_zaim():
+    zapi = zaim.Api(cunsumer_key=os.environ['ZAIM_KEY'],
+                consumer_secret=os.environ['ZAIM_SECRET'],
+                access_token=os.environ['ACCESS_TOKEN_ZAIM'],
+                access_token_secret=os.environ['ACCESS_TOKEN_ZAIM_SECRET'])
 
 
 if __name__ == '__main__':
