@@ -3,7 +3,7 @@
 [![Product Name](thumbnail.png)](https://youtu.be/Nqmd2o_2z3U)
 
 ## 製品概要
-### Money Tech
+### Money  x Tech
 
 ### 背景（製品開発のきっかけ、課題等）
 - お金管理アプリをもっと楽しく使えるようにしたい。
@@ -12,7 +12,7 @@
 
 
 ### 製品説明（具体的な製品の説明）
-ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おかねかんりちゃん）が様々な反応を見せてくれる。
+ClovaとZaimを連携させ、Zaimから取得した金額を元に Clova（おかねかんりちゃん）が様々な反応を見せてくれる。
 
 ### 特長
 
@@ -23,7 +23,7 @@ ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おか�
 #### 3. 今月の利用金額を通知
 
 ### 解決出来ること
-お金の使いすぎによる破産の回避。
+お金の使いすぎによる破産の回避。  
 記録が苦手な方でも楽しくお金の管理に取り組むことが出来る。 アプリの長期間の利用に繋がりやすい。
 ### 今後の展望
 顔認証やセンサーによってClova自身が話しかけてくる。  
@@ -36,11 +36,11 @@ ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おか�
 * [Zaim API](https://zaim.net)
 
 #### フレームワーク・ライブラリ・モジュール
-* flask
+* [flask](http://flask.pocoo.org)
 * [Amazon AWS](https://aws.amazon.com/jp/)
 
 #### デバイス
-* Macbook Pro
+* [Macbook Pro](https://www.apple.com/jp/macbook-pro/?afid=p238%7CsxLoA1Hns-dc_mtid_18707vxu38484_pcrid_284003974216_&cid=aos-jp-kwgo-mac--slid-)
 * [Clova Friends [BROWN]](https://clova.line.me/clova-friends-mini/?gclid=CjwKCAjwmdDeBRA8EiwAXlarFvDKC0_sRzvsM8ZIc8xJyy67oq0ecu4AKxQgiZHg8z2C2sY4_jcMDRoCyFYQAvD_BwE)
 
 ### 独自開発技術（Hack Dayで開発したもの）
