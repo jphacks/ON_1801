@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "app_function": "application.application",
+        "profile_name": "eb-cli",
+        "project_name": "src-flask",
+        "runtime": "python3.6",
+        "aws_region": "ap-northeast-1",
+        "s3_bucket": "zappa-cu06z77sd",
+        "environment_variables": {
+            "CLOVA_ID":"'${CLOVA_ID}'"
+        }
+    }
+}
