@@ -38,23 +38,19 @@ def launch_request_handler(clova_request):
 # WifeStatusIntentの発火箇所
 @clova.handle.intent("StatusIntent")
 def wife_status_handler(clova_request):
+    wisdom = 100000
 
-    # money_msg = clova_request.slot_value('money_chan')
-    # if money_msg is not None:
-    #     if money_msg == "差額":
-    #         response = clova.response('差額は500円です')
-    #
-    # return response
-    print("hoge")
+
     slot = clova_request.slot_value("money_chan")
     message_japanese = cek.Message(message="もう一回言って下さい", language="ja")
 
-    # if u"先月" in slot:
-    #     # message_japanese = cek.Message(message="", language="ja")
     if u"差額" in slot:
-        message_japanese = cek.Message(message="差額は500円", language="ja")
-    response = clova.response([message_japanese])
+        message_japanese = cek.Message(message="差額は-"+wisdom+"円", language="ja")
+        if wisdom > 10000:
+            message_japanese = cek.Message(message=message_japanese+"   使いすぎですね", language="ja")
+            response = clova.response([message_japanese])
     return response
+
 
 # 終了時
 @clova.handle.end
