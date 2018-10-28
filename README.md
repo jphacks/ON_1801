@@ -46,7 +46,7 @@ ClovaとZaimを連携させ、Zaimで記録した金額を素に Clova（おか�
 ### 独自開発技術（Hack Dayで開発したもの）
 #### 2日間に開発した独自の機能・技術
 * ClovaとZaimの連携
-####使用上の注意
+#### 使用上の注意
 *direnvを使用して環境変数のパラメータを設定しているので、環境変数の設定を忘れずに。
 
 
@@ -58,4 +58,9 @@ export ACCESS_TOKEN_ZAIM="access_token_zaim"
 export ACCESS_TOKEN_ZAIM_SECRET="access_token_zaim_secret"
 ```
 
-####起動・使用方法
+
+#### 起動・使用方法
+* Zaim の Developper モードで会員登録を行う( https://dev.zaim.net/ )
+* Add a new application で Service tipe を Client Appで、Access Level に全てチェックを付けて作成。
+* Consumer Key と Consumer Secret がもらえるので環境変数に設定。
+* perl src_flask/zaim_access.pl で表示されるURLにブラウザからアクセスしてHTMLに隠れているVerifier を標準入力すると Access Token と Access Token Secret が得られるので、こちらも環境変数に設定。
