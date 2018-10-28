@@ -65,14 +65,15 @@ def launch_request_handler(clova_request):
 @clova.handle.intent("StatusIntent")
 def wife_status_handler(clova_request):
     VALUE = (today_sum() - yesterday_sum())
+    print(VALUE)
 
     money_msg = clova_request.slot_value('money_chan')
     response = clova.response("もう一回行ってください")
     print(money_msg)
     if money_msg is not None:
         if money_msg == "差額":
-            response = clova.response("差額は"+str(VALUE)+"です。")
-            if VALUE > 10000:
+            response = clova.response("差額は"+str(VALUE)+"円です。")
+            if VALUE < 0:
                 response = clova.response("使いすぎです。")
         elif money_msg == "残高":
             response = clova.response("残っていません。")
