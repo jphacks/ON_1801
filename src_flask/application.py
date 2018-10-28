@@ -5,7 +5,7 @@ import cek
 import os
 import peewee as pe
 import zaim
-import datetime
+from datetime  import datetime, date,timedelta
 
 db = pe.SqliteDatabase('my_database.db')
 
@@ -64,7 +64,7 @@ def launch_request_handler(clova_request):
 # WifeStatusIntentの発火箇所
 @clova.handle.intent("StatusIntent")
 def wife_status_handler(clova_request):
-    VALUE = 100000
+    VALUE = (today_sum() - yesterday_sum())
 
     money_msg = clova_request.slot_value('money_chan')
     response = clova.response("もう一回行ってください")
@@ -96,22 +96,33 @@ def request_zaim_setup():
                 access_token_secret=os.environ['ACCESS_TOKEN_ZAIM_SECRET'])
     return zapi
 
-def request_zaim_money(zapi):
-    d_today = datetime.date.today()
-    today_moneys_json = zapi.money(mapping=1,
-              start_date=d_today.strftime('%Y-%m-%d'),
+def request_zaim_money_day(zapi,calc_days=0):
+    d_day = datetime.today()
+    if calc_days !=0 :
+        if calc_days < 0 :
+            calc_days *= -1
+        d_day = d_day - timedelta(days=calc_days)
+    print(d_day.strftime('%Y-%m-%d'))
+    day_moneys_json = zapi.money(mapping=1,
+              start_date=d_day.strftime('%Y-%m-%d'),
               mode='payment',
-              end_date=d_today.strftime('%Y-%m-%d')
+              end_date=d_day.strftime('%Y-%m-%d')
     )
-    return today_moneys_json
+    return day_moneys_json
+
+
  
 def today_sum():
-    moneys = request_zaim_money(request_zaim_setup())
+    return calc_money_sum(request_zaim_money_day(request_zaim_setup()))
+
+def calc_money_sum(moneys):
     summoney = 0
     for money in moneys['money']:
         summoney += money['amount']
     return summoney
 
+def yesterday_sum():
+    return calc_money_sum(request_zaim_money_day(request_zaim_setup(),-1))
                       
 
 
