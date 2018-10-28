@@ -1,9 +1,9 @@
 # おかねかんりちゃん
 
-[![Product Name](thumbnail.png)](https://youtu.be/Nqmd2o_2z3U)
+[![Product Name](thumbnail.png)](https://youtu.be/q_wMnh84Fn8)
 
 ## 製品概要
-### Money  x Tech
+### Money x Tech
 
 ### 背景（製品開発のきっかけ、課題等）
 - お金管理アプリをもっと楽しく使えるようにしたい。
