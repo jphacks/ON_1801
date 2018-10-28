@@ -64,7 +64,7 @@ def launch_request_handler(clova_request):
 # WifeStatusIntentの発火箇所
 @clova.handle.intent("StatusIntent")
 def wife_status_handler(clova_request):
-    VALUE = (today_sum() - yesterday_sum())
+    VALUE = (yesterday_sum() - today_sum())
     print(VALUE)
 
     money_msg = clova_request.slot_value('money_chan')
